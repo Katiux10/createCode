@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link href="css/estilo.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body style="text-align:center">
+	<div>
+
+		<div class="w3-container w3-teal">
+			<h1>AgroApp</h1>
+		</div>
+
+		<div class="w3-container">
+			<h:form id="log">
+				<h:messages id="messages" showDetail="true" globalOnly="true"
+					closable="true" style="color: red" />
+				<p:panel style="text-align:center" styleClass="panel" columnClasses="centered">
+					<p>Login</p>
+					<p>AgroApp</p>
+					<img src="img/agro.jpg" alt="Agro" />
+					<h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid">
+						<h:outputLabel for="username" value="Usuario: "
+							styleClass="output" />
+						<h:inputText value="#{loginMB.loginDTO.nombreUs}" id="username"
+							required="true" label="username" styleClass="input" />
+						<h:outputLabel for="password" value="Contraseña: "
+							styleClass="output" />
+						<h:inputSecret value="#{loginMB.loginDTO.contrasena}"
+							id="password" required="true" label="password" styleClass="input" />
+						<f:facet name="footer">
+							<h:commandButton id="loginButton" value="Login"
+								action="#{loginMB.buscarUsuarioLogin()}" update="messages"
+								styleClass="button" />
+						</f:facet>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>
