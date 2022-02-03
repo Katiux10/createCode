@@ -1,5 +1,7 @@
 package com.dto;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
 
 public class UsuarioDTO {
@@ -124,4 +126,19 @@ public class UsuarioDTO {
 		this.idRol = idRol;
 	}
 
+	public void resetFail() {
+		
+		this.nombre = null;
+		this.nombreUsuario = null;
+		this.apellido = null;
+		this.cedula = null;
+		this.contrasena = null;
+		this.email = null;
+		this.instituto = null;
+		this.profesion = null;
+		this.rol = null;
+
+        FacesMessage msg = new FacesMessage("Model reset, but it won't work properly.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 }

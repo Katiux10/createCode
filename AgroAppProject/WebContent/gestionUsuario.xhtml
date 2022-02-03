@@ -12,26 +12,19 @@
 </h:head>
 
 <body>
-
-	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
-		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
+		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Alta
 			de Usuarios</a> 
-			<a href="listadoUsuarios.xhtml"
-			class="w3-bar-item w3-button">Listado de Usuarios</a> <a
-			href="modificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar
-			Usuario</a>
+			<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
+			<a href="modificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a>
 	</div>
-
-	<!-- Page Content -->
 	<div style="margin-left: 25%">
-
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
-
 		<div class="w3-container">
 		<h1>Gestión de Usuarios</h1>
 			<h:form id="seleccionaRol">
@@ -105,7 +98,6 @@
 				</h:panelGrid>
 				</p:outputPanel>
 			</h:form>
-			
 			<h:form id="experto" rendered="#{usuarioMB.muestraFormExperto()}">
 			<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />
 					<h:panelGrid columns="3" cellpadding="10">
@@ -159,7 +151,6 @@
 						styleClass="button" action="#{usuarioMB.crearUsuario()}" />
 				</h:panelGrid>
 			</h:form>
-			
 			<h:form id="comun" rendered="#{usuarioMB.muestraFormComun()}">
 			<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />
 					<h:panelGrid columns="3" cellpadding="10">
@@ -196,8 +187,6 @@
 						pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
 					</h:inputText>
 					<h:messages for="email" style="color:red"></h:messages>
-
-
 					<h:commandButton value="Registrar" update="Crear"
 						styleClass="button" action="#{usuarioMB.crearUsuario()}" />
 				</h:panelGrid>

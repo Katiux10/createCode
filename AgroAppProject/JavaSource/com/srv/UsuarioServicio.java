@@ -30,6 +30,7 @@ public class UsuarioServicio {
 	public void setDaoUSuario(DAOUsuario daoUSuario) {
 		this.daoUsuario = daoUSuario;
 	}
+	
 	//devuelve lista usuarios DTO hacia MB
 	public List<UsuarioDTO> list() throws ServiciosException {
 		List<UsuarioDTO> listUsDTO = new ArrayList<UsuarioDTO>(); 
@@ -38,10 +39,8 @@ public class UsuarioServicio {
 			listUsDTO.add(toDTO(u));
 		}
 		return listUsDTO;
-		
 	}
 	
-	//convierte un usuario a UsuarioDTO
 	public UsuarioDTO toDTO(Usuario usuario) throws ServiciosException{
 		UsuarioDTO us = new UsuarioDTO();
 		us.setIdUsuario(usuario.getIdUsuario());
@@ -57,9 +56,7 @@ public class UsuarioServicio {
 		
 		return us;
 	}
-	
 
-	//Convertimos un usuarioDTO a usuario
 	public Usuario toUsuario(UsuarioDTO usuarioDTO) throws ServiciosException{
 		Usuario us = new Usuario();
 		us.setIdUsuario(usuarioDTO.getIdUsuario());
@@ -71,12 +68,9 @@ public class UsuarioServicio {
 		us.setInstituto(usuarioDTO.getInstituto());
 		us.setNombre(usuarioDTO.getNombre());
 		us.setProfesion(usuarioDTO.getProfesion());
-		
 
 		if (usuarioDTO.getRol().equals("Administrador")) {
             us.setRol(daoRol.buscarRol(1L));
-          
-            
 		} else if (usuarioDTO.getRol().equals("Experto")){
 			us.setRol(daoRol.buscarRol(2L));
 			
@@ -89,23 +83,17 @@ public class UsuarioServicio {
 	
 	//devuelve usuario DTO hacia MB
 	public UsuarioDTO crear(UsuarioDTO usuarioDTO) throws ServiciosException {
-		
 		Usuario us = new Usuario();
-		us = toUsuario(usuarioDTO);//retorna el DTO convertido en usuario
+		us = toUsuario(usuarioDTO);
 			
 		daoUsuario.crearUsuario(us);
-		
-		//resetUsuario();
 		
 		UsuarioDTO usDTO = new UsuarioDTO();//retorna el Usuario convertido a DTO
 		usDTO = toDTO(us);
 		return usDTO;
-		
 	}
 	
 	public UsuarioDTO modificar(UsuarioDTO usuarioDTO) throws ServiciosException {
-		//busco el usuario por Id
-		
 		Usuario u1 = new Usuario();
 		u1= toUsuario(usuarioDTO);//retorna el DTO convertido en usuario
 		
@@ -124,27 +112,14 @@ public class UsuarioServicio {
 		u1 = daoUsuario.buscarNomUs(nombreUsuario);
 		uDTO = toDTO(u1);
 
-		return uDTO ;
-		
+		return uDTO ;	
 	}
 	
 	public void eliminar(UsuarioDTO usuarioDTO) throws ServiciosException {
-		
 		Usuario u1 = new Usuario();
 		u1= toUsuario(usuarioDTO);//retorna el DTO convertido en usuario
 		
 		//elimino ese usuario
 		daoUsuario.darDeBajaUsuario(u1);
-		
 	}
-	
-	
-//	public String resetUsuario(UsuarioDTO usuarioDTO) {
-//		Usuario us = new UsuarioDTO();
-//
-//	
-//		return "";
-//	}
-//	
-	
 }

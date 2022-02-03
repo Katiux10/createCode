@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import com.entities.ActividadDeCampo;
-import com.entities.Formulario;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
 
@@ -21,7 +20,7 @@ public class DAOActividadDeCampo {
 	private EntityManager em;
 	
 	
-	public void crearActDeCampo(ActividadDeCampo  actividadDeCampo ) throws ServiciosException {
+	public void crearActDeCampo(ActividadDeCampo  actividadDeCampo) throws ServiciosException {
 		em.persist(actividadDeCampo);
 		em.flush();
 	}

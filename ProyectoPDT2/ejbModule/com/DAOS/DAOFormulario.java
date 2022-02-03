@@ -19,8 +19,12 @@ public class DAOFormulario {
 	private EntityManager em;
 	
 	public void crearFormulario(Formulario formulario) throws ServiciosException {
-		em.persist(formulario);
-		em.flush();
+		try {
+			em.persist(formulario);
+			em.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void modificarFormulario(Formulario formulario) throws ServiciosException {

@@ -1,7 +1,10 @@
 package com.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
+import com.entities.Casilla;
 import com.entities.Usuario;
 
 public class FormularioDTO {
@@ -14,11 +17,23 @@ public class FormularioDTO {
 	private String resumen;
 	
 	private Usuario usuario;
+	
+	private List<Casilla> casillas;
 
 	public FormularioDTO() {
 		super();
 	}
 	
+	public FormularioDTO(long idFormulario, @NotNull String nombreForm, String resumen, Usuario usuario,
+			List<Casilla> casillas) {
+		super();
+		this.idFormulario = idFormulario;
+		this.nombreForm = nombreForm;
+		this.resumen = resumen;
+		this.usuario = usuario;
+		this.casillas = casillas;
+	}
+
 	public long getIdFormulario() {
 		return idFormulario;
 	}
@@ -49,6 +64,14 @@ public class FormularioDTO {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Casilla> getCasillas() {
+		return casillas;
+	}
+
+	public void setCasillas(List<Casilla> casillas) {
+		this.casillas = casillas;
 	}
 
 }

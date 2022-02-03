@@ -1,8 +1,9 @@
 package com.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -40,11 +41,14 @@ public class ActividadDeCampo implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Dato> datos;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="ID_Usuario")
 	private Usuario usuario;
 	
 	@Column
-	private LocalDate Fecha;
+//	@JsonFormat
+//     (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private Date Fecha;
 	
 	@Column
 	private String Hora;
@@ -54,7 +58,7 @@ public class ActividadDeCampo implements Serializable {
 	public ActividadDeCampo() {
 	}
 	
-	public ActividadDeCampo(long formulario, Usuario usuario, LocalDate fecha, String hora ) {
+	public ActividadDeCampo(long formulario, Usuario usuario, Date fecha, String hora ) {
 		super();
 		this.formulario = formulario;
 		this.usuario = usuario;
@@ -78,11 +82,11 @@ public class ActividadDeCampo implements Serializable {
 		this.usuario = usuario;
 	}
 	
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return Fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		Fecha = fecha;
 	}
 

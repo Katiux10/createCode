@@ -54,7 +54,7 @@ public class FormularioMB implements Serializable{
 	public String crearFormulario() throws ServiciosException{
 		formularioDTO = formularioServ.crearForm(formularioDTO);
 		
-		if(formularioDTO.getIdFormulario() <= 0) {
+		if(formularioDTO.getIdFormulario() <= 0 || formularioDTO.getNombreForm().isEmpty() || !formularioDTO.getResumen().isEmpty()) {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al crear el formulario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			

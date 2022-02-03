@@ -49,16 +49,6 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	}
 	
 	@Override
-	public List<Usuario> buscarUsuarioLogin(String nombreUsuario, String contrasena) throws ServiciosException {
-		return dAOUsuario.buscarUsuarioLogin(nombreUsuario, contrasena);
-	}
-	
-	@Override
-	public Usuario buscarUsuarioNombre(String nombre) throws ServiciosException {
-		return dAOUsuario.buscarUsuarioNombre(nombre);
-	}
-	
-	@Override
 	public List<Usuario> obtenerTodosUsuarios()throws ServiciosException{
 		return dAOUsuario.obtenerTodosUsuarios();
 	}
@@ -67,10 +57,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	public Usuario buscarNomUs(String nombreUsuario) throws ServiciosException {
 		return dAOUsuario.buscarNomUs(nombreUsuario);
 	}
-	@Override
-	public List<Usuario> seleccionarUs(String criterioNombre,String criterioRol) throws ServiciosException{
-		return dAOUsuario.seleccionarUs(criterioNombre, criterioRol);
-	}
+	
 	@Override
 	public Usuario buscarUsuarioLog(String nombreUsuario, String contrasena) throws ServiciosException {
 		return dAOUsuario.buscarUsuarioLog(nombreUsuario, contrasena);

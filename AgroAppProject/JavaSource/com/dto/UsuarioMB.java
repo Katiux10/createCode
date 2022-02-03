@@ -10,7 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
 import com.exception.ServiciosException;
 import com.srv.UsuarioServicio;
 
@@ -30,9 +29,18 @@ public class UsuarioMB implements Serializable{
 	
 	@EJB
 	private UsuarioServicio usuarioServ;
-
+	
+	private String contrasena;
+	
 	
 	//Getters y setters
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
 
 	public UsuarioDTO getUsuarioDTO() {
 		return usuarioDTO;
@@ -65,14 +73,9 @@ public class UsuarioMB implements Serializable{
 		listaDTO = new ArrayList<UsuarioDTO>();
 	}
 	
-	//métodos que se comunican con el DTO
-	public void obtenerUsuarios() throws ServiciosException{
-		listaDTO = usuarioServ.list();
-	}
-		
 	public String crearUsuario() throws ServiciosException {
 		usuarioDTO = usuarioServ.crear(usuarioDTO);
-		
+	
 		if(usuarioDTO.getIdUsuario() <= 0) {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al crear el usuario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
@@ -80,7 +83,6 @@ public class UsuarioMB implements Serializable{
 		}else {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario creado con éxito", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-		
 		}
 		
 		return "gestionUsuario.xhtml";
@@ -100,7 +102,6 @@ public class UsuarioMB implements Serializable{
 		return "listadoUsuarios.xhtml";
 	}
 	
-	//Se utiliza en listado de usuarios en los botones de editar y eliminar
 	public String buscarUs(UsuarioDTO usDTO) throws ServiciosException{
 		usuarioDTO = usuarioServ.buscar(usDTO.getNombreUsuario());
 		
@@ -120,6 +121,11 @@ public class UsuarioMB implements Serializable{
 		return "listadoUsuarios.xhtml";
 	}
 	
+	//métodos que se comunican con el DTO
+		public void obtenerUsuarios() throws ServiciosException{
+			listaDTO = usuarioServ.list();
+		}
+		
 	public boolean muestraFormAdmin() {
 		
 		if (usuarioDTO.getRol().equals("Administrador")) {
@@ -142,6 +148,5 @@ public class UsuarioMB implements Serializable{
 		}
 		return false;
 	}
-	
 	
 }

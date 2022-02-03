@@ -29,6 +29,5 @@ public class LoginDTO {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-
 	
 }

@@ -7,7 +7,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
 import com.entities.Rol;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
@@ -29,6 +28,8 @@ public class LoginMB implements Serializable{
 	LoginServicio loginServ;
 	
 	private Usuario usLog;
+	
+	private String msg;
 
 	public LoginMB() {
 		super();
@@ -59,6 +60,14 @@ public class LoginMB implements Serializable{
 	public void setUsLog(Usuario usLog) {
 		this.usLog = usLog;
 	}
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
 	@PostConstruct
 	public void init() {
@@ -70,13 +79,26 @@ public class LoginMB implements Serializable{
 		usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
 		Rol rolUs = usLog.getRol();
 		
-		if (rolUs.getNombre().equals("Común") || rolUs.getNombre().equals("Experto")){
+		if(usLog == null) {	
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			
-			return "homeComExp.xhtml";
+		}else {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuario logueado con éxito");
+		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}
+		
+		if (rolUs.getNombre().equals("Común")){
+			
+			return "homeComun.xhtml";
+		}
+		
+		if(rolUs.getNombre().equals("Experto")) {
+			
+			return "homeExperto.xhtml";
 		}else {
 			
 			return "home.xhtml";
 		}
-		 
 	}
 }

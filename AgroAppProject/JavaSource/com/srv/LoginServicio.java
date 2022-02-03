@@ -5,7 +5,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import com.DAOS.DAOUsuario;
-import com.entities.Rol;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
 
@@ -16,19 +15,18 @@ public class LoginServicio {
 	@EJB
 	private DAOUsuario daoUsuario;
 
-	public DAOUsuario getDaoUSuario() {
+	public DAOUsuario getDaoUsuario() {
 		return daoUsuario;
 	}
 
-	public void setDaoUSuario(DAOUsuario daoUSuario) {
-		this.daoUsuario = daoUSuario;
+	public void setDaoUSuario(DAOUsuario daoUsuario) {
+		this.daoUsuario = daoUsuario;
 	}
 	
 	public Usuario login(String nombreUs, String contrasena) throws ServiciosException {
 		Usuario us = daoUsuario.buscarUsuarioLog(nombreUs, contrasena);
-		
+	
 		return us;
-		
 	}
 
 }

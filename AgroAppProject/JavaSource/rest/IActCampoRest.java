@@ -8,25 +8,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.dto.LoginDTO;
-
 @Path("")
-public interface IUsuarioRest {
+public interface IActCampoRest {
 	
 	@GET
     @Path("echo")
     @Produces({MediaType.TEXT_PLAIN})
     public String echo();
-
-    @GET
-    @Path("obtenerUsuarios")
-    @Produces(MediaType.APPLICATION_JSON)
-	public Response listUsuarios();
-    
-    @POST 
+	
+	@POST 
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("login")
+    @Path("crear")
+	public Response crearActCampo(ActCampoDTOrest crearActCampRest);
+	
+	@GET 
+	@Path("obtenerActCampo")
     @Produces(MediaType.APPLICATION_JSON)
-	public Response login(LoginDTO loginDTO); 
+	public Response obtenerActCampo();
 
 }

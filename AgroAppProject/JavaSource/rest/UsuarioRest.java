@@ -11,8 +11,8 @@ import com.dto.LoginDTO;
 import com.dto.UsuarioDTO;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
-import com.srv.UsuarioServicio;
 import com.srv.LoginServicio;
+import com.srv.UsuarioServicio;
 
 @Stateless
 @LocalBean
@@ -38,7 +38,6 @@ public class UsuarioRest implements IUsuarioRest{
 			e.printStackTrace();
 			return Response.serverError().build();
 		}
-		
 	}
 	
 	@Override
@@ -49,11 +48,9 @@ public class UsuarioRest implements IUsuarioRest{
 				return Response.ok().entity("Bienvenido " + usuario.getNombre()).build();
 			}
 		} catch (ServiciosException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Response.status(Response.Status.NOT_ACCEPTABLE).entity("Usuario o contraseña inválida").build();
 		}
 		return Response.ok().entity("Usuario logueado con éxito").build();
 	}
-
 }

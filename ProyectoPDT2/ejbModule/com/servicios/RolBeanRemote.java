@@ -1,6 +1,5 @@
 package com.servicios;
 
-import javax.ejb.Remote;
 import com.entities.Rol;
 import com.exception.ServiciosException;
 

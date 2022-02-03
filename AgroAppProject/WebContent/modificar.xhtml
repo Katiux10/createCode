@@ -1,70 +1,55 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<link href="css/estilo.css" rel="stylesheet" type="text/css" />
 </h:head>
 <body>
-	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
 		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a> 
 		<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
 		<a href="modificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a> 
 	</div>
-
-	<!-- Page Content -->
 	<div style="margin-left: 25%">
-
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
-
 		<div class="w3-container">
 		<h:form id= "Modificar">
-		
 	<h2>Modificar Usuario</h2>
 	<h:form>
-	<h:messages id="messages" showDetail="true" closable="true"></h:messages>
+	<h:messages id="messages" showDetail="true" errorStyle="color:blue" closable="true"></h:messages>
 		<h:panelGrid columns="2" cellpadding="10">
 			<h:outputLabel value="Rol" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.rol}" styleClass="inputGestion"></h:inputText>
-			
 			<h:outputLabel value="Nombre" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.nombre}" styleClass="inputGestion"></h:inputText>
-
 			<h:outputLabel value="Apellidos" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.apellido}" styleClass="inputGestion"></h:inputText>
-
-
 			<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.nombreUsuario}" styleClass="inputGestion"></h:inputText>
-
 			<h:outputLabel value="Contrasena" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.contrasena}" styleClass="inputGestion"></h:inputText>
-			
 			<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.email}" styleClass="inputGestion"></h:inputText>
-			
 			<h:outputLabel value="Cédula" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.cedula}" styleClass="inputGestion"></h:inputText>
-			
 			<h:outputLabel value="Instituto" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.instituto}" styleClass="inputGestion"></h:inputText>
-			
 			<h:outputLabel value="Profesión" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.profesion}" styleClass="inputGestion"></h:inputText>
-			
 			<f:facet name="footer">
 				<h:commandButton action="#{usuarioMB.modificarUsuario()}" value="Modificar" styleClass="button"></h:commandButton>
 				<h:commandButton action="#{usuarioMB.eliminarUsuario()}" value="Eliminar" styleClass="button"></h:commandButton>
-			</f:facet>
-			
+			</f:facet>	
 		</h:panelGrid>
-
 	</h:form>
 	</h:form>
 	</div>

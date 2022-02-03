@@ -11,14 +11,12 @@
 </h:head>
 <h:body style="text-align:center">
 	<div>
-
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
-
 		<div class="w3-container">
 			<h:form id="log">
-				<h:messages id="messages" showDetail="true" globalOnly="true"
+				<h:messages id="messages" showDetail="false" globalOnly="false"
 					closable="true" style="color: red" />
 				<p:panel style="text-align:center" styleClass="panel" columnClasses="centered">
 					<p>Login</p>
@@ -35,7 +33,7 @@
 							id="password" required="true" label="password" styleClass="input" />
 						<f:facet name="footer">
 							<h:commandButton id="loginButton" value="Login"
-								action="#{loginMB.buscarUsuarioLogin()}" update="messages"
+								action="#{loginMB.buscarUsuarioLogin()}" update="messages" 
 								styleClass="button" />
 						</f:facet>
 					</h:panelGrid>
