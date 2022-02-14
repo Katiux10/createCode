@@ -42,19 +42,19 @@ public class UsuarioServicio {
 	}
 	
 	public UsuarioDTO toDTO(Usuario usuario) throws ServiciosException{
-		UsuarioDTO us = new UsuarioDTO();
-		us.setIdUsuario(usuario.getIdUsuario());
-		us.setApellido(usuario.getApellido());
-		us.setCedula(usuario.getCedula());
-		us.setContrasena(usuario.getContrasena());
-		us.setEmail(usuario.getEmail());
-		us.setNombre(usuario.getNombre());
-		us.setNombreUsuario(usuario.getNombreUsuario());
-		us.setInstituto(usuario.getInstituto());
-		us.setProfesion(usuario.getProfesion());
-		us.setRol(usuario.getRol().getNombre());
+		UsuarioDTO usDTO = new UsuarioDTO();
+		usDTO.setIdUsuario(usuario.getIdUsuario());
+		usDTO.setApellido(usuario.getApellido());
+		usDTO.setCedula(usuario.getCedula());
+		usDTO.setContrasena(usuario.getContrasena());
+		usDTO.setEmail(usuario.getEmail());
+		usDTO.setNombre(usuario.getNombre());
+		usDTO.setNombreUsuario(usuario.getNombreUsuario());
+		usDTO.setInstituto(usuario.getInstituto());
+		usDTO.setProfesion(usuario.getProfesion());
+		usDTO.setRol(usuario.getRol().getNombre());
 		
-		return us;
+		return usDTO;
 	}
 
 	public Usuario toUsuario(UsuarioDTO usuarioDTO) throws ServiciosException{
@@ -73,7 +73,6 @@ public class UsuarioServicio {
             us.setRol(daoRol.buscarRol(1L));
 		} else if (usuarioDTO.getRol().equals("Experto")){
 			us.setRol(daoRol.buscarRol(2L));
-			
 		}else if (usuarioDTO.getRol().equals("Común")){
 			us.setRol(daoRol.buscarRol(3L));
 		}

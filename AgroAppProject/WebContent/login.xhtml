@@ -23,14 +23,14 @@
 					<p>AgroApp</p>
 					<img src="img/agro.jpg" alt="Agro" />
 					<h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid">
-						<h:outputLabel for="username" value="Usuario: "
+						<h:outputLabel for="usuario" value="Usuario "
 							styleClass="output" />
 						<h:inputText value="#{loginMB.loginDTO.nombreUs}" id="username"
-							required="true" label="username" styleClass="input" />
-						<h:outputLabel for="password" value="Contraseña: "
+							required="true" label="usuario o contraseña" styleClass="input" />
+						<h:outputLabel for="password" value="Contraseña "
 							styleClass="output" />
 						<h:inputSecret value="#{loginMB.loginDTO.contrasena}"
-							id="password" required="true" label="password" styleClass="input" />
+							id="password" required="true" label="usuario o contraseña" styleClass="input" />
 						<f:facet name="footer">
 							<h:commandButton id="loginButton" value="Login"
 								action="#{loginMB.buscarUsuarioLogin()}" update="messages" 

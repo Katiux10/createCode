@@ -78,21 +78,17 @@ public class LoginMB implements Serializable{
 	public String buscarUsuarioLogin() throws ServiciosException {
 		usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
 		Rol rolUs = usLog.getRol();
-		
+
 		if((usLog == null) || !(usLog == loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena()))) {	
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
 			FacesContext.getCurrentInstance().addMessage(null,facesMsg);
 			
 			if (rolUs.getNombre().equals("Común")){
-				
 				return "homeComun.xhtml";
 			}
-			
 			if(rolUs.getNombre().equals("Experto")) {
-				
 				return "homeExperto.xhtml";
 			}else {
-				
 				return "home.xhtml";
 			}
 		}else {

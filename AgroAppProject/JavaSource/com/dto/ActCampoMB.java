@@ -21,8 +21,16 @@ public class ActCampoMB implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private List<ActCampoDTO> listAct;
+	private List<ActCampoDTO> listDTO;
 	
+	public List<ActCampoDTO> getListDTO() {
+		return listDTO;
+	}
+
+	public void setListDTO(List<ActCampoDTO> listDTO) {
+		this.listDTO = listDTO;
+	}
+
 	private List<ActCampoDTO> filtroActCamp;
 
 	@EJB
@@ -44,14 +52,6 @@ public class ActCampoMB implements Serializable {
 	public void setActCampoDTO(ActCampoDTO actCampoDTO) {
 		this.actCampoDTO = actCampoDTO;
 	}
-
-	public List<ActCampoDTO> getListAct() {
-		return listAct;
-	}
-
-	public void setListAct(List<ActCampoDTO> listAct) {
-		this.listAct = listAct;
-	}
 	
 	public List<ActCampoDTO> getFiltroActCamp() {
 		return filtroActCamp;
@@ -63,14 +63,14 @@ public class ActCampoMB implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		listAct = new ArrayList<ActCampoDTO>();
+		listDTO = new ArrayList<ActCampoDTO>();
 		setFiltroActCamp(new ArrayList<ActCampoDTO>());
 		actCampoDTO = new ActCampoDTO();
 		
 	}
 	
 	public void listAct() throws ServiciosException {
-		listAct = actCampoServicio.listarActividades();
+		listDTO = actCampoServicio.listarActividades();
 		
 	}
 	

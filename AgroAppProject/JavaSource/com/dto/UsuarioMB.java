@@ -105,9 +105,17 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public String buscarUs(UsuarioDTO usDTO) throws ServiciosException{
+		String pagina = "";
 		usuarioDTO = usuarioServ.buscar(usDTO.getNombreUsuario());
+		if(usuarioDTO.getRol().equals("Administrador")) {
+			pagina = "modificarAdmin.xhtml";
+		}else if(usuarioDTO.getRol().equals("Experto")) {
+			pagina = "modificarExperto.xhtml";
+		}else {
+			pagina = "modificar.xhtml";
+		}
 		
-		return "modificar.xhtml";
+		return pagina;
 	}
 	
 	public String eliminarUsuario() throws ServiciosException{
@@ -124,9 +132,9 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	//métodos que se comunican con el DTO
-		public void obtenerUsuarios() throws ServiciosException{
-			listaDTO = usuarioServ.list();
-		}
+	public void obtenerUsuarios() throws ServiciosException{
+		listaDTO = usuarioServ.list();
+	}
 		
 	public boolean muestraFormAdmin() {
 		

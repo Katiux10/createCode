@@ -40,6 +40,8 @@
 			<h:inputText value="#{usuarioMB.usuarioDTO.contrasena}" styleClass="inputGestion"></h:inputText>
 			<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.email}" styleClass="inputGestion"></h:inputText>
+			<h:outputLabel value="Instituto" styleClass="output"></h:outputLabel>
+			<h:inputText value="#{usuarioMB.usuarioDTO.instituto}" styleClass="inputGestion"></h:inputText>
 			<f:facet name="footer">
 				<h:commandButton action="#{usuarioMB.modificarUsuario()}" value="Modificar" styleClass="button"></h:commandButton>
 				<h:commandButton action="#{usuarioMB.eliminarUsuario()}" value="Eliminar" styleClass="button"></h:commandButton>
