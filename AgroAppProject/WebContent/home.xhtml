@@ -5,14 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"  />
 	<link href="css/estilo.css" rel="stylesheet" type="text/css" />
 </h:head>
 <body>
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
-		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a> 
+		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button" >Gestión de Usuarios</a> 
 		<a href="gestionFormulario.xhtml" class="w3-bar-item w3-button">Gestión de Formularios</a>
 		<a href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Analisis y Gestión de Reportes</a> 
 	</div>
@@ -21,9 +21,15 @@
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
-		<div class="w3-container">
-			<h2>¡Bienvenido/a!</h2>
+		<div class="w3-container" >
+			<h2>Bienvenido usuario:
+			<h:outputText value="#{loginMB.loginDTO.nombreUs}"></h:outputText >
+			</h2> 
 		</div>
+		<img src="img/campo1.jpg" width="500" height="350"  alt="campo1" />
+		<img src="img/campo2.jpg" width="500" height="350" alt="campo2" />
+		<img src="img/campo4.jpg" width="500" height="350" alt="campo4" />
+		<img src="img/campo3.jpg" width="500" height="350" alt="campo3" />
 	</div>
 </body>
 </html>

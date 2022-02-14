@@ -14,8 +14,9 @@
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
 		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
-		<a href="gestionFormulario.xhtml" class="w3-bar-item w3-button">Gestión de Formulario</a> 
-		<a href="" class="w3-bar-item w3-button">Modificar/Eliminar Formulario</a>
+		<a href="" class="w3-bar-item w3-button">Crear formulario</a>
+		<a href="casillas.xhtml" class="w3-bar-item w3-button">Gestionar casillas</a> 
+		<a href="listadoFormulariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Formulario</a>
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
@@ -29,10 +30,12 @@
 				<h:inputText id="nomFormulario"
 						value="#{formularioMB.formularioDTO.nombreForm}" required="true"
 						label="El nombre debe ser ingresado" styleClass="inputGestion"></h:inputText>
+						
 				<h:outputLabel value="Descripción" styleClass="output"></h:outputLabel>
 				<h:inputText id="resFormulario"
 						value="#{formularioMB.formularioDTO.resumen}" required="false"
 						styleClass="inputGestion"></h:inputText>
+						
 				<h:commandButton id="crearForm" value="Crear Formulario" styleClass="button"
 					action="#{formularioMB.crearFormulario()}"/>  
 			</h:form>

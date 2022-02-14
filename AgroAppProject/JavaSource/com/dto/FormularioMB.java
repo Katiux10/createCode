@@ -1,6 +1,7 @@
 package com.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -22,6 +23,17 @@ public class FormularioMB implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+
+	private List<FormularioDTO> listaFormularioDTO;
+	
+	public List<FormularioDTO> getListaFormularioDTO() {
+		return listaFormularioDTO;
+	}
+
+	public void setListaFormularioDTO(List<FormularioDTO> listaFormularioDTO) {
+		this.listaFormularioDTO = listaFormularioDTO;
+	}
+
 	private FormularioDTO formularioDTO;
 	
 	@EJB
@@ -45,23 +57,24 @@ public class FormularioMB implements Serializable{
 	public void setFormularioServ(FormularioServicio formularioServ) {
 		this.formularioServ = formularioServ;
 	}
-	
+	 
 	@PostConstruct
 	public void init() {
 		formularioDTO = new FormularioDTO();
 	}
 	
 	public String crearFormulario() throws ServiciosException{
-		formularioDTO = formularioServ.crearForm(formularioDTO);
-		
-		if(formularioDTO.getIdFormulario() <= 0 || formularioDTO.getNombreForm().isEmpty() || !formularioDTO.getResumen().isEmpty()) {
+		if(!formularioDTO.getResumen().isEmpty() || formularioDTO.getResumen().isEmpty()) {
+			if(!formularioDTO.getNombreForm().isEmpty()) {
+				formularioDTO = formularioServ.crearForm(formularioDTO);
+				init(); 
+				
+				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Formulario creado con éxito", "");
+				FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			}
+		}else {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al crear el formulario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-			
-		}else {
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Formulario creado con éxito", "");
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-		
 		}
 		
 		return "gestionFormulario.xhtml";

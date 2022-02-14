@@ -15,18 +15,19 @@
 		<h3 class="w3-bar-item">Menú</h3>
 		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
 		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a> 
-	<a href="altaUsuarios.xhtml" class="w3-bar-item w3-button">Alta
-			de Usuarios</a>  
-			<a href="listadoUsuariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a> 
+		<a href="altaUsuarios.xhtml" class="w3-bar-item w3-button">Alta
+			de Usuarios</a> 
+			<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
+		
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
 		<div class="w3-container">
-	<h:form id= "Listar">
+	<h:form id= "listadoUsuariosModificar">
 	<h:messages id="messages" showDetail="true" closable="true"></h:messages>
-	<h2>Listado de Usuarios</h2>
+	<h2>Actualización de usuarios</h2>
 		<p:dataTable value= "#{usuarioMB.listaDTO}" id="listado" styleClass="tables" var="fila" border="1">
 			<p:column>
 				<f:facet name="header" styleClass="table">Usuario</f:facet>
@@ -63,6 +64,14 @@
 			<p:column>
 				<f:facet name="header" styleClass="table">Rol</f:facet>
 				<h:outputText value="#{fila.rol}"></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header" styleClass="table">Editar</f:facet>
+				<h:commandButton value="Editar" action= "#{usuarioMB.buscarUs(fila)}" update= "Editar" styleClass="button"></h:commandButton>
+			</p:column>
+			<p:column>
+				<f:facet name="header" styleClass="table">Eliminar</f:facet>
+				<h:commandButton value="Eliminar" action= "#{usuarioMB.buscarUs(fila)}" update= "Editar" styleClass="button"></h:commandButton>
 			</p:column>
 		</p:dataTable>
 		<h:commandButton value="Listar Usuarios" action= "#{usuarioMB.obtenerUsuarios()}" update= "Listar" styleClass="button"></h:commandButton>

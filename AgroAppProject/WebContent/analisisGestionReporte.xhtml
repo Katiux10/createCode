@@ -11,6 +11,8 @@
 </h:head>
 
 <body>
+
+	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
@@ -18,15 +20,21 @@
 		<a href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Análisis
 			y Gestión de Reportes</a>
 	</div>
+
+	<!-- Page Content -->
 	<div style="margin-left: 25%">
+
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
+
 		<div class="w3-container">
 			<h1>Análisis y Gestión de Reportes</h1>
 			<h3>Filtros</h3>
+			
 			<h:form id="Listar">
 				<h:messages id="messages" showDetail="true" closable="true"></h:messages>
+				
 				<h2>Listado de Actividades de Campo</h2>
 				<p:dataTable value="#{actCampoMB.listAct}" id="listado"
 					styleClass="tables" var="fila" rows= "3" editable= "true" filteredValue="#{actCampoMB.filtroActCamp}" emptyMessage="Not found" border="1">
@@ -76,7 +84,7 @@
 					</p:column>
 				</p:dataTable>
 				<h:commandButton value="Listar Actividad de Campo"
-					action="#{actCampoMB.list()}" update="Listar"
+					action="#{actCampoMB.listAct()}" update="Listar"
 					styleClass="button"></h:commandButton>
 			</h:form>
 		</div>
