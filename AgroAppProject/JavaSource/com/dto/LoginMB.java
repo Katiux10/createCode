@@ -79,26 +79,28 @@ public class LoginMB implements Serializable{
 		usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
 		Rol rolUs = usLog.getRol();
 		
-		if(usLog == null) {	
+		if((usLog == null) || !(usLog == loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena()))) {	
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			FacesContext.getCurrentInstance().addMessage(null,facesMsg);
 			
+			if (rolUs.getNombre().equals("Común")){
+				
+				return "homeComun.xhtml";
+			}
+			
+			if(rolUs.getNombre().equals("Experto")) {
+				
+				return "homeExperto.xhtml";
+			}else {
+				
+				return "home.xhtml";
+			}
 		}else {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuario logueado con éxito");
 		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}
+		return null;
 		
-		if (rolUs.getNombre().equals("Común")){
-			
-			return "homeComun.xhtml";
-		}
-		
-		if(rolUs.getNombre().equals("Experto")) {
-			
-			return "homeExperto.xhtml";
-		}else {
-			
-			return "home.xhtml";
-		}
+	
 	}
 }

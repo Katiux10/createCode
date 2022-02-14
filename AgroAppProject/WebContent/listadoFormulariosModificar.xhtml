@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+	<link href="css/estilo.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+	<div class="w3-sidebar w3-light-grey w3-bar-block"
+		style="width: 25%; background-color: #1657EB;">
+		<h3 class="w3-bar-item">Menú</h3>
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
+		<a href="gestionFormulario.xhtml" class="w3-bar-item w3-button">Gestión de Formularios</a> 
+			
+	</div>
+	<div style="margin-left: 25%">
+		<div class="w3-container w3-teal">
+			<h1>AgroApp</h1>
+		</div>
+		<div class="w3-container">
+	<h:form id= "listadoUsuariosModificar">
+	<h:messages id="messages" showDetail="true" closable="true"></h:messages>
+	<h2>Listado de Formularios</h2>
+		<p:dataTable value= "#{formularioMB.listaFormularioDTO}" id="lista" styleClass="tables" var="fila" border="1">
+		<p:column>
+				<f:facet name="header" styleClass="table">Formulario</f:facet>
+				<h:outputText value="#{fila.nombreForm}"></h:outputText>
+			</p:column>
+		<p:column>
+				<f:facet name="header" styleClass="table">Editar</f:facet>
+				<h:commandButton value="Editar" action= "#{fomrularioMB.buscarForm(fila)}" update= "Editar" styleClass="button"></h:commandButton>
+			</p:column>
+			<p:column>
+				<f:facet name="header" styleClass="table">Eliminar</f:facet>
+				<h:commandButton value="Eliminar" action= "#{fomrularioMB.buscarForm(fila)}" update= "Editar" styleClass="button"></h:commandButton>
+			</p:column>
+		</p:dataTable>
+		<h:commandButton value="Listar Usuarios" action= "#{usuarioMB.obtenerUsuarios()}" update= "Listar" styleClass="button"></h:commandButton>
+	</h:form>
+	</div>
+	</div>
+</body>
+</html>

@@ -74,29 +74,31 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public String crearUsuario() throws ServiciosException {
-		usuarioDTO = usuarioServ.crear(usuarioDTO);
-	
-		if(usuarioDTO.getIdUsuario() <= 0) {
+		
+		if(!usuarioDTO.getNombre().isEmpty() && !usuarioDTO.getApellido().isEmpty() && !usuarioDTO.getNombreUsuario().isEmpty() && !usuarioDTO.getEmail().isEmpty() && !usuarioDTO.getContrasena().isEmpty()) {
+			usuarioDTO = usuarioServ.crear(usuarioDTO);
+			init();
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario creado con éxito", "");
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}else {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al crear el usuario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			
-		}else {
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario creado con éxito", "");
-			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}
 		
-		return "gestionUsuario.xhtml";
+		return "altaUsuarios.xhtml";
 	
 	}
 	
 	public String modificarUsuario() throws ServiciosException {
-		usuarioDTO = usuarioServ.modificar(usuarioDTO);
 		
-		if(usuarioDTO.getIdUsuario() <= 0) {
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al modificar el usuario", "");
+		if(!usuarioDTO.getNombre().isEmpty() && !usuarioDTO.getApellido().isEmpty() && !usuarioDTO.getNombreUsuario().isEmpty() && !usuarioDTO.getEmail().isEmpty() && !usuarioDTO.getContrasena().isEmpty()) {
+			usuarioDTO = usuarioServ.modificar(usuarioDTO);
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario modificado con éxito", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}else {
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario modificado con éxito", "");
+			
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al modificar el usuario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}
 		return "listadoUsuarios.xhtml";
@@ -109,12 +111,12 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public String eliminarUsuario() throws ServiciosException{
-		usuarioServ.eliminar(usuarioDTO);
-		
+
 		if(usuarioDTO.getIdUsuario() <= 0) {
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar el usuario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}else {
+			usuarioServ.eliminar(usuarioDTO);usuarioServ.eliminar(usuarioDTO);
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario eliminado con éxito", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}

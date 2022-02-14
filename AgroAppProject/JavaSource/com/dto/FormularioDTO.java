@@ -9,6 +9,16 @@ import com.entities.Usuario;
 
 public class FormularioDTO {
 	
+	private List<FormularioDTO> listaFormularioDTO;
+	
+	public List<FormularioDTO> getListaFormularioDTO() {
+		return listaFormularioDTO;
+	}
+
+	public void setListaFormularioDTO(List<FormularioDTO> listaFormularioDTO) {
+		this.listaFormularioDTO = listaFormularioDTO;
+	}
+
 	private long idFormulario;
 	
 	@NotNull
@@ -32,6 +42,14 @@ public class FormularioDTO {
 		this.resumen = resumen;
 		this.usuario = usuario;
 		this.casillas = casillas;
+	}
+	
+	public FormularioDTO(long idFormulario, @NotNull String nombreForm, String resumen, Usuario usuario) {
+		super();
+		this.idFormulario = idFormulario;
+		this.nombreForm = nombreForm;
+		this.resumen = resumen;
+		this.usuario = usuario;
 	}
 
 	public long getIdFormulario() {
@@ -73,5 +91,4 @@ public class FormularioDTO {
 	public void setCasillas(List<Casilla> casillas) {
 		this.casillas = casillas;
 	}
-
 }
