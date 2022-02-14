@@ -48,7 +48,7 @@ public class ActCampoDTO {
 	}
 
 	public String getUsuario() {
-		return usuario;
+		return usuari;
 	}
 
 	public void setUsuario(String usuario) {
