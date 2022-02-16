@@ -4,8 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	
-	<h:head>
+
+<h:head>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 	<link href="css/estilo.css" rel="stylesheet" type="text/css" />
 </h:head>
@@ -13,20 +13,22 @@
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
-		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
-		<a href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Análisis y Gestión de Reportes</a>
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a> <a
+			href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Análisis
+			y Gestión de Reportes</a>
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
 		<div class="w3-container">
-		
-	<h:form id= "Listar">
-	<h:messages id="messages" showDetail="true" closable="true"></h:messages>
-	<h2>Listado de Actividades de Campo</h2>
-		<p:dataTable value= "#{actCampoMB.listDTO}" id="listado" styleClass="tables" var="fila" border="1">
-			<p:column>
+
+			<h:form id="Listar">
+				<h:messages id="messages" showDetail="true" closable="true"></h:messages>
+				<h2>Listado de Actividades de Campo</h2>
+				<p:dataTable value="#{actCampoMB.listDTO}" id="listado"
+					styleClass="tables" var="fila" border="1">
+					<p:column>
 						<f:facet name="header" styleClass="table">Id Act. Campo</f:facet>
 						<h:outputText value="#{fila.idActCampo}"></h:outputText>
 					</p:column>
@@ -42,15 +44,16 @@
 						<f:facet name="header" styleClass="table">Hora</f:facet>
 						<h:outputText value="#{fila.hora}"></h:outputText>
 					</p:column>
-					<p:column filterBy= "#{fila.departamento}" filterMatchMode="contains">
+					<p:column filterBy="#{fila.departamento}"
+						filterMatchMode="contains">
 						<f:facet name="header" styleClass="table">Departamento</f:facet>
 						<h:outputText value="#{fila.departamento}"></h:outputText>
 					</p:column>
-					<p:column filterBy= "#{fila.rolUs}" filterMatchMode="contains">
+					<p:column filterBy="#{fila.rolUs}" filterMatchMode="contains">
 						<f:facet name="header" styleClass="table">Rol</f:facet>
 						<h:outputText value="#{fila.rolUs}"></h:outputText>
 					</p:column>
-					<p:column filterBy= "#{fila.metMuestreo}" filterMatchMode="contains">
+					<p:column filterBy="#{fila.metMuestreo}" filterMatchMode="contains">
 						<f:facet name="header" styleClass="table">Método de Muestreo</f:facet>
 						<h:outputText value="#{fila.metMuestreo}"></h:outputText>
 					</p:column>
@@ -70,11 +73,15 @@
 						<f:facet name="header" styleClass="table">Cantidad</f:facet>
 						<h:outputText value="#{fila.cantidad}"></h:outputText>
 					</p:column>
-		</p:dataTable>
-		<h:commandButton value="Listar Actividad de Campo"
-					action="#{actCampoMB.listAct()}" update= "Listar" styleClass="button"></h:commandButton>
-	</h:form>
-	</div>
+				</p:dataTable>
+				<h:commandButton value="Listar Actividad de Campo"
+					action="#{actCampoMB.listAct()}" update="Listar"
+					styleClass="button"></h:commandButton>
+				<h:commandButton value="Listar Actividad de Campo"
+					action="#{actCampoMB.reporte()}" update="Reporte"
+					styleClass="button"></h:commandButton>
+			</h:form>
+		</div>
 	</div>
 </body>
 </html>
