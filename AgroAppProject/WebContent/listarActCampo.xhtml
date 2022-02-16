@@ -76,10 +76,13 @@
 				</p:dataTable>
 				<h:commandButton value="Listar Actividad de Campo"
 					action="#{actCampoMB.listAct()}" update="Listar"
-					styleClass="button"></h:commandButton>
-				<h:commandButton value="Listar Actividad de Campo"
-					action="#{actCampoMB.reporte()}" update="Reporte"
-					styleClass="button"></h:commandButton>
+					styleClass="button">
+					</h:commandButton>
+				<h:commandLink>
+					<h:graphicImage styleClass="imgExcel" url="img/excel.jpg"/>
+					<p:dataExporter type="xls" target="listado" fileName= "Reporte" encoding="ISO-8859-1" >
+					</p:dataExporter>
+				</h:commandLink>
 			</h:form>
 		</div>
 	</div>
