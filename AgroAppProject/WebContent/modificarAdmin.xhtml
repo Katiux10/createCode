@@ -16,7 +16,7 @@
 		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a> 
 		<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
 		<a href="listadoUsuariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a> 
-		<a href="modificar.xhtml" class="w3-bar-item w3-button">Actualizar</a>
+		<a href="modificarAdmin.xhtml" class="w3-bar-item w3-button">Actualizar</a>
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
@@ -26,7 +26,7 @@
 		<h:form id= "Modificar">
 	<h2>Modificar Usuario</h2>
 	<h:form>
-	<h:messages id="messages" showDetail="true" errorStyle="color:blue" closable="true"></h:messages>
+	<h:messages id="messages" showDetail="true" errorStyle="color:red" closable="true"></h:messages>
 		<h:panelGrid columns="2" cellpadding="10">
 			<h:outputLabel value="Rol" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.rol}" styleClass="inputGestion"></h:inputText>
@@ -36,8 +36,6 @@
 			<h:inputText value="#{usuarioMB.usuarioDTO.apellido}" styleClass="inputGestion"></h:inputText>
 			<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.nombreUsuario}" styleClass="inputGestion"></h:inputText>
-			<h:outputLabel value="Contrasena" styleClass="output"></h:outputLabel>
-			<h:inputText value="#{usuarioMB.usuarioDTO.contrasena}" styleClass="inputGestion"></h:inputText>
 			<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.email}" styleClass="inputGestion"></h:inputText>
 			<h:outputLabel value="Instituto" styleClass="output"></h:outputLabel>

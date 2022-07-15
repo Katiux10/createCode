@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import com.DAOS.DAOUsuario;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Stateless
 @LocalBean
@@ -14,6 +15,7 @@ public class LoginServicio {
 	@EJB
 	private DAOUsuario daoUsuario;
 	private static Usuario usLog;
+	private String encriptContra;
 
 	public DAOUsuario getDaoUsuario() {
 		return daoUsuario;
@@ -24,7 +26,8 @@ public class LoginServicio {
 	}
 	
 	public Usuario login(String nombreUs, String contrasena) throws ServiciosException {
-		usLog = daoUsuario.buscarUsuarioLog(nombreUs, contrasena);
+		encriptContra = DigestUtils.sha1Hex(contrasena);
+		usLog = daoUsuario.buscarUsuarioLog(nombreUs, encriptContra);
 	
 		return usLog;
 	}

@@ -12,31 +12,30 @@
 <h:body style="text-align:center">
 	<div>
 		<div class="w3-container w3-teal">
-			<h1>AgroApp</h1>
+			<h1>Login</h1>
 		</div>
 		<div class="w3-container">
 			<h:form id="log">
 				<h:messages id="messages" showDetail="false" globalOnly="false"
 					closable="true" style="color: red" />
-				<p:panel style="text-align:center" styleClass="panel" columnClasses="centered">
-					<p>Login</p>
-					<p>AgroApp</p>
-					<img src="img/agro.jpg" alt="Agro" />
-					<h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid">
-						<h:outputLabel for="usuario" value="Usuario "
+				<p:panel styleClass="panel" >
+					<img src="img/agro.jpg" alt="Agro" width="191" height="168"/>
+					<div class="container" styleclass="div">
+						<h:outputLabel for="usuario" value="Usuario  " 
 							styleClass="output" />
 						<h:inputText value="#{loginMB.loginDTO.nombreUs}" id="username"
-							required="true" label="usuario o contraseña" styleClass="input" />
-						<h:outputLabel for="password" value="Contraseña "
+							required="true" label="usuario o contraseña" styleClass="input"/>
+							<br></br>
+						<h:outputLabel for="password" value="Contraseña  "
 							styleClass="output" />
 						<h:inputSecret value="#{loginMB.loginDTO.contrasena}"
 							id="password" required="true" label="usuario o contraseña" styleClass="input" />
 						<f:facet name="footer">
 							<h:commandButton id="loginButton" value="Login"
-								action="#{loginMB.buscarUsuarioLogin()}" update="messages" 
-								styleClass="button" />
+								action="#{loginMB.loginGenerico()}" update="messages" 
+								styleClass="buttonlogin" />
 						</f:facet>
-					</h:panelGrid>
+						</div>
 				</p:panel>
 			</h:form>
 		</div>

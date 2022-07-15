@@ -12,6 +12,7 @@ import com.DAOS.DAOUsuario;
 import com.dto.UsuarioDTO;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Stateless
 @LocalBean
@@ -19,10 +20,10 @@ public class UsuarioServicio {
 	
 	@EJB
 	private DAOUsuario daoUsuario;
-	
 	@EJB
 	private DAORol daoRol;
-
+	private String encript;
+	
 	public DAOUsuario getDaoUSuario() {
 		return daoUsuario;
 	}
@@ -46,7 +47,8 @@ public class UsuarioServicio {
 		usDTO.setIdUsuario(usuario.getIdUsuario());
 		usDTO.setApellido(usuario.getApellido());
 		usDTO.setCedula(usuario.getCedula());
-		usDTO.setContrasena(usuario.getContrasena());
+		encript = DigestUtils.sha1Hex(usuario.getContrasena());
+		usDTO.setContrasena(encript);
 		usDTO.setEmail(usuario.getEmail());
 		usDTO.setNombre(usuario.getNombre());
 		usDTO.setNombreUsuario(usuario.getNombreUsuario());
@@ -63,7 +65,8 @@ public class UsuarioServicio {
 		us.setNombreUsuario(usuarioDTO.getNombreUsuario());
 		us.setApellido(usuarioDTO.getApellido());
 		us.setCedula(usuarioDTO.getCedula());
-		us.setContrasena(usuarioDTO.getContrasena());
+		encript = DigestUtils.sha1Hex(usuarioDTO.getContrasena());
+		us.setContrasena(encript);
 		us.setEmail(usuarioDTO.getEmail());
 		us.setInstituto(usuarioDTO.getInstituto());
 		us.setNombre(usuarioDTO.getNombre());
@@ -73,7 +76,7 @@ public class UsuarioServicio {
             us.setRol(daoRol.buscarRol(1L));
 		} else if (usuarioDTO.getRol().equals("Experto")){
 			us.setRol(daoRol.buscarRol(2L));
-		}else if (usuarioDTO.getRol().equals("Común")){
+		}else {
 			us.setRol(daoRol.buscarRol(3L));
 		}
 

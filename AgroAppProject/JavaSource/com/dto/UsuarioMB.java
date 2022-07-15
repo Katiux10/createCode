@@ -70,11 +70,11 @@ public class UsuarioMB implements Serializable{
 	public void init() {
 		usuarioDTO = new UsuarioDTO();
 		usuarioDTO.setRol(" ");
+		
 		listaDTO = new ArrayList<UsuarioDTO>();
 	}
 	
 	public String crearUsuario() throws ServiciosException {
-		
 		if(!usuarioDTO.getNombre().isEmpty() && !usuarioDTO.getApellido().isEmpty() && !usuarioDTO.getNombreUsuario().isEmpty() && !usuarioDTO.getEmail().isEmpty() && !usuarioDTO.getContrasena().isEmpty()) {
 			usuarioDTO = usuarioServ.crear(usuarioDTO);
 			init();
@@ -124,7 +124,7 @@ public class UsuarioMB implements Serializable{
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar el usuario", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}else {
-			usuarioServ.eliminar(usuarioDTO);usuarioServ.eliminar(usuarioDTO);
+			usuarioServ.eliminar(usuarioDTO);
 			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario eliminado con éxito", "");
 			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 		}

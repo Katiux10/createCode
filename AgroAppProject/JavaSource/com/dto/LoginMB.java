@@ -7,10 +7,14 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.naming.ldap.LdapContext;
+
 import com.entities.Rol;
 import com.entities.Usuario;
 import com.exception.ServiciosException;
 import com.srv.LoginServicio;
+
+import conexion.ADAuthenticator;
 
 
 @Named(value="loginMB")
@@ -23,12 +27,9 @@ public class LoginMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private LoginDTO loginDTO;
-	
 	@EJB
 	LoginServicio loginServ;
-	
 	private Usuario usLog;
-	
 	private String msg;
 
 	public LoginMB() {
@@ -75,28 +76,77 @@ public class LoginMB implements Serializable{
 		usLog = null;
 	}
 	
-	public String buscarUsuarioLogin() throws ServiciosException {
-		usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
-		Rol rolUs = usLog.getRol();
+	//esto para que se vaya por un login o el otro, si tiene @ va por el loginAD
+	public String loginGenerico() throws ServiciosException {
+		if (loginDTO.getNombreUs().contains("@")) {
+			return loginAD();
+		} else {
+			return buscarUsuarioLogin();
+		}
+	}
 
-		if((usLog == null) || !(usLog == loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena()))) {	
-			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
-			FacesContext.getCurrentInstance().addMessage(null,facesMsg);
+	@SuppressWarnings("unused")
+	public String loginAD() {
+		// obtenemos el dominio en base al email provisto
+		try {
 			
-			if (rolUs.getNombre().equals("Común")){
-				return "homeComun.xhtml";
+			LdapContext ctx = ADAuthenticator.getConnection("Administrator", "Password.1","createCode.com.uy");
+			ADAuthenticator.User userAD = ADAuthenticator.getUser(loginDTO.getNombreUs(), ctx);
+			ADAuthenticator userAD1 = new ADAuthenticator();
+
+			//los controles
+			if (userAD1 != null) {
+				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Usuario encontrado en el AD " + loginDTO.getNombreUs(), "");
+				FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+
+				return "home.xhtml";		// esta es la pagina que queremos que redirija
+				
+			} else {
+				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado en el AD, o contraseña incorrecta",
+						"");
+				FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+	
 			}
-			if(rolUs.getNombre().equals("Experto")) {
-				return "homeExperto.xhtml";
+
+		} catch (Exception e) {
+			// Failed to authenticate user!
+			System.out.println(e.getMessage());
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado", "");
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	public String buscarUsuarioLogin() throws ServiciosException {
+		try {
+			usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
+			Rol rolUs = usLog.getRol();
+	
+			if((usLog == null) || !(usLog == loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena()))) {	
+				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
+				FacesContext.getCurrentInstance().addMessage(null,facesMsg);
+				
+				if (rolUs.getNombre().equals("Común")){
+					return "homeComun.xhtml";
+				}
+				if(rolUs.getNombre().equals("Experto")) {
+					return "homeExperto.xhtml";
+				}else {
+					return "home.xhtml";
+				}
 			}else {
-				return "home.xhtml";
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuario logueado con éxito");
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 			}
-		}else {
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.FACES_MESSAGES, "Usuario logueado con éxito");
-		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		}catch(Exception e) {
+			// Failed to authenticate user!
+			System.out.println(e.getMessage());
+			FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado", "");
+			FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+			e.printStackTrace();
 		}
 		return null;
-		
-	
 	}
 }
