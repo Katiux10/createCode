@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.naming.directory.InitialDirContext;
 import javax.naming.ldap.LdapContext;
 
 import com.entities.Rol;
@@ -73,7 +74,7 @@ public class LoginMB implements Serializable{
 	@PostConstruct
 	public void init() {
 		loginDTO = new LoginDTO();
-		usLog = null;
+		//usLog = null;
 	}
 	
 	//esto para que se vaya por un login o el otro, si tiene @ va por el loginAD
@@ -89,18 +90,13 @@ public class LoginMB implements Serializable{
 	public String loginAD() {
 		// obtenemos el dominio en base al email provisto
 		try {
-			
-			LdapContext ctx = ADAuthenticator.getConnection("Administrator", "Password.1","createCode.com.uy");
-			ADAuthenticator.User userAD = ADAuthenticator.getUser(loginDTO.getNombreUs(), ctx);
-			ADAuthenticator userAD1 = new ADAuthenticator();
-
+			ADAuthenticator userAD = new ADAuthenticator();
 			//los controles
-			if (userAD1 != null) {
+			if (userAD != null) {
 				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Usuario encontrado en el AD " + loginDTO.getNombreUs(), "");
 				FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-
-				return "home.xhtml";		// esta es la pagina que queremos que redirija
+				return "home.xhtml";// esta es la pagina que queremos que redirija
 				
 			} else {
 				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado en el AD, o contraseña incorrecta",
