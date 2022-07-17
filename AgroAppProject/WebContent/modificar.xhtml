@@ -17,6 +17,7 @@
 		<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
 		<a href="listadoUsuariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a> 
 		<a href="modificar.xhtml" class="w3-bar-item w3-button">Actualizar</a>
+
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
@@ -26,7 +27,7 @@
 		<h:form id= "Modificar">
 	<h2>Modificar Usuario</h2>
 	<h:form>
-	<h:messages id="messages" showDetail="true" errorStyle="color:blue" closable="true"></h:messages>
+		<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" /> 
 		<h:panelGrid columns="2" cellpadding="10">
 			<h:outputLabel value="Rol" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.rol}" styleClass="inputGestion"></h:inputText>
@@ -35,9 +36,10 @@
 			<h:outputLabel value="Apellidos" styleClass="output"></h:outputLabel>
 			<h:inputText value="#{usuarioMB.usuarioDTO.apellido}" styleClass="inputGestion"></h:inputText>
 			<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
-			<h:inputText value="#{usuarioMB.usuarioDTO.nombreUsuario}" styleClass="inputGestion"></h:inputText>
+			<h:inputText value="#{usuarioMB.usuarioDTO.nombreUsuario}" styleClass="inputGestion" readonly="true"></h:inputText>
 			<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
-			<h:inputText value="#{usuarioMB.usuarioDTO.email}" styleClass="inputGestion"></h:inputText>
+			<h:inputText value="#{usuarioMB.usuarioDTO.email}" styleClass="inputGestion" validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
+			<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" /></h:inputText>
 			<f:facet name="footer">
 				<h:commandButton action="#{usuarioMB.modificarUsuario()}" value="Modificar" styleClass="button"></h:commandButton>
 				<h:commandButton action="#{usuarioMB.eliminarUsuario()}" value="Eliminar" styleClass="button"></h:commandButton>

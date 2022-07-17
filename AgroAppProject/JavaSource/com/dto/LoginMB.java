@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.ldap.LdapContext;
+import javax.servlet.http.HttpSession;
 
 import com.entities.Rol;
 import com.entities.Usuario;
@@ -77,6 +78,13 @@ public class LoginMB implements Serializable{
 		//usLog = null;
 	}
 	
+	public String logout() {
+		usLog = null;
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Logout correcto.", "");
+		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+		return "login.xhtml";
+	}
+	
 	//esto para que se vaya por un login o el otro, si tiene @ va por el loginAD
 	public String loginGenerico() throws ServiciosException {
 		if (loginDTO.getNombreUs().contains("@")) {
@@ -119,7 +127,7 @@ public class LoginMB implements Serializable{
 		try {
 			usLog = loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena());
 			Rol rolUs = usLog.getRol();
-	
+		
 			if((usLog == null) || !(usLog == loginServ.login(loginDTO.getNombreUs(), loginDTO.getContrasena()))) {	
 				FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe ingresar usuario y/o contraseña", "");
 				FacesContext.getCurrentInstance().addMessage(null,facesMsg);
