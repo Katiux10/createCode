@@ -11,24 +11,34 @@
 </h:head>
 <body>
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
-		style="width: 25%; background-color: #1657EB;">
+		style="width: 19%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
-		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a> <a
-			href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Análisis
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a> 
+		<a href="analisisGestionReporte.xhtml" class="w3-bar-item w3-button">Análisis
 			y Gestión de Reportes</a>
 	</div>
-	<div style="margin-left: 25%">
+	<div style="margin-left: 19%">
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
-		<div class="w3-container">
-
+		<div style="margin-left: 2%">
 			<h:form id="Listar">
 				<h:messages id="messages" showDetail="true" closable="true"></h:messages>
 				<h2>Listado de Actividades de Campo</h2>
+				
+				<p:panelGrid columns="2">
+					<p:outputLabel for="fechaIni" value="FechaIni:"/>
+	                <p:calendar id="fechaIni" value="#{actCampoMB.fechaIni}" >
+	            	</p:calendar>    
+	                <p:outputLabel for="fechaFin" value="FechaFin:"/>
+	                <p:calendar id="fechaFin" value="#{actCampoMB.fechaFin}"/>
+	                <h:commandButton id="Cargar" value="Cargar" styleClass="button"
+					action="#{actCampoMB.filtroFecha(actCampoMB.fechaIni,actCampoMB.fechaFin)}" />
+				</p:panelGrid>
+					
 				<p:dataTable value="#{actCampoMB.listDTO}" id="listado"
-					styleClass="tables" var="fila" border="1">
-					<p:column>
+					styleClass="tables" var="fila" border="1" emptyMessage="No econtrado">
+					<p:column >
 						<f:facet name="header" styleClass="table">Id Act. Campo</f:facet>
 						<h:outputText value="#{fila.idActCampo}"></h:outputText>
 					</p:column>
@@ -36,53 +46,58 @@
 						<f:facet name="header" styleClass="table">Usuario</f:facet>
 						<h:outputText value="#{fila.usuario}"></h:outputText>
 					</p:column>
-					<p:column filterBy="#{fila.fecha}" filterMatchMode="contains">
-						<f:facet name="header" styleClass="table">Fecha</f:facet>
-						<h:outputText value="#{fila.fecha}"></h:outputText>
-					</p:column>
 					<p:column>
+						<f:facet name="header" styleClass="table">Formulario</f:facet>
+						<h:outputText value="#{fila.formulario}"></h:outputText>
+					</p:column>
+					<p:column >
+						<f:facet name="header" styleClass="table">Fecha</f:facet>
+						<h:outputText value="#{fila.fecha}" ></h:outputText>
+					</p:column>
+					<p:column >
 						<f:facet name="header" styleClass="table">Hora</f:facet>
 						<h:outputText value="#{fila.hora}"></h:outputText>
 					</p:column>
 					<p:column filterBy="#{fila.departamento}"
-						filterMatchMode="contains">
+						filterMatchMode="contains" >
 						<f:facet name="header" styleClass="table">Departamento</f:facet>
 						<h:outputText value="#{fila.departamento}"></h:outputText>
 					</p:column>
-					<p:column filterBy="#{fila.rolUs}" filterMatchMode="contains">
+					<p:column filterBy="#{fila.rolUs}" filterMatchMode="contains" >
 						<f:facet name="header" styleClass="table">Rol</f:facet>
 						<h:outputText value="#{fila.rolUs}"></h:outputText>
-					</p:column>
-					<p:column filterBy="#{fila.metMuestreo}" filterMatchMode="contains">
+					</p:column >
+					<p:column filterBy="#{fila.metMuestreo}" filterMatchMode="contains" >
 						<f:facet name="header" styleClass="table">Método de Muestreo</f:facet>
 						<h:outputText value="#{fila.metMuestreo}"></h:outputText>
 					</p:column>
-					<p:column>
+					<p:column filterBy="#{fila.estMuestreo}" filterMatchMode="contains">
 						<f:facet name="header" styleClass="table">Estación de Muestreo</f:facet>
 						<h:outputText value="#{fila.estMuestreo}"></h:outputText>
 					</p:column>
-					<p:column>
+					<p:column >
 						<f:facet name="header" styleClass="table">Latitud</f:facet>
 						<h:outputText value="#{fila.latitud}"></h:outputText>
 					</p:column>
-					<p:column>
+					<p:column >
 						<f:facet name="header" styleClass="table">Longitud</f:facet>
 						<h:outputText value="#{fila.longitud}"></h:outputText>
 					</p:column>
-					<p:column>
+					<p:column >
 						<f:facet name="header" styleClass="table">Cantidad</f:facet>
 						<h:outputText value="#{fila.cantidad}"></h:outputText>
 					</p:column>
 				</p:dataTable>
-				<h:commandButton value="Listar Actividad de Campo"
-					action="#{actCampoMB.listAct()}" update="Listar"
-					styleClass="button">
-					</h:commandButton>
-				<h:commandLink>
-					<h:graphicImage styleClass="imgExcel" url="img/excel.jpg"/>
-					<p:dataExporter type="xls" target="listado" fileName= "Reporte" encoding="ISO-8859-1" >
-					</p:dataExporter>
-				</h:commandLink>
+				<h:commandButton value="Listar Actividad de Campo" action="#{actCampoMB.listAct()}" 
+					update="Listar" styleClass="button">
+				</h:commandButton>
+					<h:commandLink>
+						<h:graphicImage styleClass="imgExcel" url="img/excel.jpg"/>
+						<p:dataExporter type="xls" target="listado" fileName= "Reporte" encoding="ISO-8859-1" pageOnly="true" >
+						</p:dataExporter>
+					</h:commandLink>
+					
+				
 			</h:form>
 		</div>
 	</div>

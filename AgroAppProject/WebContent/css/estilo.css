@@ -110,6 +110,8 @@ table{
 	font-family: "Comfortaa";
 	font-size: 15px;
 	position: center;
+	table-layout: auto;
+  	width: 180px;
 
 }
 
@@ -118,6 +120,8 @@ tables{
 	font-size: 20px;
 	border-collapse: collapse;
 	border: 2px solid black;
+	table-layout: auto;
+  	width: 180px;
 
 }
 

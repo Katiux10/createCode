@@ -15,20 +15,21 @@
 	<div class="w3-sidebar w3-light-grey w3-bar-block"
 		style="width: 25%; background-color: #1657EB;">
 		<h3 class="w3-bar-item">Menú</h3>
-		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a>
-		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a>  
-			<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
-			<a href="listadoUsuariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a>
+		<a href="home.xhtml" class="w3-bar-item w3-button">Home</a> 
+		<a href="gestionUsuario.xhtml" class="w3-bar-item w3-button">Gestión de Usuarios</a> 
+		<a href="listadoUsuarios.xhtml" class="w3-bar-item w3-button">Listado de Usuarios</a> 
+		<a href="listadoUsuariosModificar.xhtml" class="w3-bar-item w3-button">Modificar/Eliminar Usuario</a>
 	</div>
 	<div style="margin-left: 25%">
 		<div class="w3-container w3-teal">
 			<h1>AgroApp</h1>
 		</div>
 		<div class="w3-container">
-		<h1>Gestión de Usuarios</h1>
-				<h2>Crear usuario</h2>
+			<h1>Gestión de Usuarios</h1>
+			<h2>Crear usuario</h2>
 			<h:form id="seleccionaRol">
-			<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />  
+				<h:messages globalOnly="false" showDetail="false"
+					errorStyle="color:red" />
 				<h:outputLabel value="Rol" styleClass="output"></h:outputLabel>
 				<h:selectOneMenu value="#{usuarioMB.usuarioDTO.rol}" required="true"
 					label="El rol debe ser seleccionado" styleClass="inputGestion">
@@ -39,69 +40,72 @@
 					<f:selectItem itemValue="Común" itemLabel="Común"
 						styleClass="inputGestion" />
 				</h:selectOneMenu>
-				<h:commandButton id="siguiente" value="Siguiente" styleClass="button"
-					action="altaUsuaios.xhtml"/>
+				<h:commandButton id="siguiente" value="Siguiente"
+					styleClass="button" action="altaUsuaios.xhtml" />
 			</h:form>
-			<h:form id= "admin" rendered="#{usuarioMB.muestraFormAdmin()}">
-			<p:outputPanel id="panel" styleClass="p-mb-2">
-			<!--<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />-->
+			<h:form id="admin" rendered="#{usuarioMB.muestraFormAdmin()}">
+				<p:outputPanel id="panel" styleClass="p-mb-2">
+					<!--<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />-->
 					<h:panelGrid columns="3" cellpadding="10">
-					<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
-					<h:inputText id="usuario"
-						value="#{usuarioMB.usuarioDTO.nombreUsuario}" required="true"
-						label="El usuario debe ser ingresado" styleClass="inputGestion"></h:inputText>
-					<!-- <h:messages for="usuario" style="color:red"></h:messages>-->
+						<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
+						<h:inputText id="usuario"
+							value="#{usuarioMB.usuarioDTO.nombreUsuario}" required="true"
+							label="El usuario debe ser ingresado" styleClass="inputGestion"></h:inputText>
+						<!-- <h:messages for="usuario" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="Contraseña" styleClass="output"></h:outputLabel>
-					<h:inputSecret id="contrasena"
-						value="#{usuarioMB.usuarioDTO.contrasena}" required="true"
-						label="La contraseña debe ser ingresada" styleClass="inputGestion">
+						<h:outputLabel value="Contraseña" styleClass="output"></h:outputLabel>
+						<h:inputSecret id="contrasena"
+							value="#{usuarioMB.usuarioDTO.contrasena}" required="true"
+							label="La contraseña debe ser ingresada"
+							styleClass="inputGestion">
 						</h:inputSecret>
-					<!-- <h:messages for="contrasena" style="color:red"></h:messages>-->
+						<!-- <h:messages for="contrasena" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="Nombre" styleClass="output"></h:outputLabel>
-					<h:inputText id="nombre" value="#{usuarioMB.usuarioDTO.nombre}"
-						required="true" label="El nombre debe ser ingresado"
-						styleClass="inputGestion"></h:inputText>
-					<!-- <h:messages for="nombre" style="color:red"></h:messages>-->
+						<h:outputLabel value="Nombre" styleClass="output"></h:outputLabel>
+						<h:inputText id="nombre" value="#{usuarioMB.usuarioDTO.nombre}"
+							required="true" label="El nombre debe ser ingresado"
+							styleClass="inputGestion"></h:inputText>
+						<!-- <h:messages for="nombre" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="Apellido" styleClass="output"></h:outputLabel>
-					<h:inputText id="apellido" value="#{usuarioMB.usuarioDTO.apellido}"
-						required="true" label="El apellido debe ser ingresado"
-						styleClass="inputGestion"></h:inputText>
-					<!-- <h:messages for="apellido" style="color:red"></h:messages>-->
+						<h:outputLabel value="Apellido" styleClass="output"></h:outputLabel>
+						<h:inputText id="apellido"
+							value="#{usuarioMB.usuarioDTO.apellido}" required="true"
+							label="El apellido debe ser ingresado" styleClass="inputGestion"></h:inputText>
+						<!-- <h:messages for="apellido" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="Cédula" styleClass="output"></h:outputLabel>
-					<h:inputText id="cedula" value="#{usuarioMB.usuarioDTO.cedula}"
-						required="true" label="La cédula debe ser ingresada"
-						styleClass="inputGestion" validatorMessage="Formato cédula incorrecto, deben ser máximo 8 caracteres sin . ni -">
-						<f:validateRegex pattern="[0-9]{8}"/>
-					</h:inputText>
-					<!-- <h:messages for="cedula" style="color:red"></h:messages>-->
+						<h:outputLabel value="Cédula" styleClass="output"></h:outputLabel>
+						<h:inputText id="cedula" value="#{usuarioMB.usuarioDTO.cedula}"
+							required="true" label="La cédula debe ser ingresada"
+							styleClass="inputGestion"
+							validatorMessage="Formato cédula incorrecto, deben ser máximo 8 caracteres sin . ni -">
+							<f:validateRegex pattern="[0-9]{8}" />
+						</h:inputText>
+						<!-- <h:messages for="cedula" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
-					<h:inputText id="email" value="#{usuarioMB.usuarioDTO.email}"
-						required="true" label="El email debe ser ingresado"
-						styleClass="inputGestion" validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
-					<f:validateRegex
-						pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
-					</h:inputText>
-					<!-- <h:messages for="email" style="color:red"></h:messages>-->
+						<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
+						<h:inputText id="email" value="#{usuarioMB.usuarioDTO.email}"
+							required="true" label="El email debe ser ingresado"
+							styleClass="inputGestion"
+							validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
+							<f:validateRegex
+								pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
+						</h:inputText>
+						<!-- <h:messages for="email" style="color:red"></h:messages>-->
 
-					<h:outputLabel value="Instituto" styleClass="output"></h:outputLabel>
-					<h:inputText id="instituto"
-						value="#{usuarioMB.usuarioDTO.instituto}" required="true"
-						styleClass="inputGestion"></h:inputText>
-					<!-- <h:messages for="instituto" style="color:red"></h:messages>-->
+						<h:outputLabel value="Instituto" styleClass="output"></h:outputLabel>
+						<h:inputText id="instituto"
+							value="#{usuarioMB.usuarioDTO.instituto}" required="true"
+							styleClass="inputGestion"></h:inputText>
+						<!-- <h:messages for="instituto" style="color:red"></h:messages>-->
 
-					<h:commandButton value="Registrar" update="Crear"
-						styleClass="button" action="#{usuarioMB.crearUsuario()}" />
-				</h:panelGrid>
+						<h:commandButton value="Registrar" update="Crear"
+							styleClass="button" action="#{usuarioMB.crearUsuario()}" />
+					</h:panelGrid>
 				</p:outputPanel>
 			</h:form>
 			<h:form id="experto" rendered="#{usuarioMB.muestraFormExperto()}">
-			<!--<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />-->
-					<h:panelGrid columns="3" cellpadding="10">
+				<!--<h:messages globalOnly="false" showDetail="false" errorStyle="color:red" />-->
+				<h:panelGrid columns="3" cellpadding="10">
 					<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
 					<h:inputText id="usuario"
 						value="#{usuarioMB.usuarioDTO.nombreUsuario}" required="true"
@@ -112,7 +116,7 @@
 					<h:inputSecret id="contrasena"
 						value="#{usuarioMB.usuarioDTO.contrasena}" required="true"
 						label="La contraseña debe ser ingresada" styleClass="inputGestion">
-						</h:inputSecret>
+					</h:inputSecret>
 					<!-- <h:messages for="contrasena" style="color:red"></h:messages>-->
 
 					<h:outputLabel value="Nombre" styleClass="output"></h:outputLabel>
@@ -130,17 +134,19 @@
 					<h:outputLabel value="Cédula" styleClass="output"></h:outputLabel>
 					<h:inputText id="cedula" value="#{usuarioMB.usuarioDTO.cedula}"
 						required="true" label="La cédula debe ser ingresada"
-						styleClass="inputGestion" validatorMessage="Formato cédula incorrecto, deben ser máximo 8 caracteres sin . ni -">
-						<f:validateRegex pattern="[0-9]{8}"/>
+						styleClass="inputGestion"
+						validatorMessage="Formato cédula incorrecto, deben ser máximo 8 caracteres sin . ni -">
+						<f:validateRegex pattern="[0-9]{8}" />
 					</h:inputText>
 					<!-- <h:messages for="cedula" style="color:red"></h:messages>-->
 
 					<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
 					<h:inputText id="email" value="#{usuarioMB.usuarioDTO.email}"
 						required="true" label="El email debe ser ingresado"
-						styleClass="inputGestion" validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
-					<f:validateRegex
-						pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
+						styleClass="inputGestion"
+						validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
+						<f:validateRegex
+							pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
 					</h:inputText>
 					<!-- <h:messages for="email" style="color:red"></h:messages>-->
 
@@ -155,7 +161,7 @@
 				</h:panelGrid>
 			</h:form>
 			<h:form id="comun" rendered="#{usuarioMB.muestraFormComun()}">
-					<h:panelGrid columns="3" cellpadding="10">
+				<h:panelGrid columns="3" cellpadding="10">
 					<h:outputLabel value="Usuario" styleClass="output"></h:outputLabel>
 					<h:inputText id="usuario"
 						value="#{usuarioMB.usuarioDTO.nombreUsuario}" required="true"
@@ -166,7 +172,7 @@
 					<h:inputSecret id="contrasena"
 						value="#{usuarioMB.usuarioDTO.contrasena}" required="true"
 						label="La contraseña debe ser ingresada" styleClass="inputGestion">
-						</h:inputSecret>
+					</h:inputSecret>
 					<!-- <h:messages for="contrasena" style="color:red"></h:messages>-->
 
 					<h:outputLabel value="Nombre" styleClass="output"></h:outputLabel>
@@ -184,8 +190,10 @@
 					<h:outputLabel value="E-mail" styleClass="output"></h:outputLabel>
 					<h:inputText id="email" value="#{usuarioMB.usuarioDTO.email}"
 						required="true" label="El email debe ser ingresado"
-						styleClass="inputGestion" validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
-					<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
+						styleClass="inputGestion"
+						validatorMessage="Formato de email incorrecto, debe incluir un @ y .com">
+						<f:validateRegex
+							pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
 					</h:inputText>
 					<!-- <h:messages for="email" style="color:red"></h:messages>-->
 					<h:commandButton value="Registrar" update="Crear"
